@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui">
+
+
+<ui:composition template="template.xhtml">
+	<ui:define name="titulo">
+            Sectores
+        </ui:define>
+	<ui:define name="contenido">
+		<br />
+		<h:form id="frmnb">
+			<p:growl id="growl" showDetail="true" />
+			<p:messages closable="true"></p:messages>
+			<b:panel title="Registro de Sectores" look="primary">
+				<b:panelGrid colSpans="2,10">
+					<h:outputLabel value="Nombre*" />
+					<b:inputText value="#{sectorBean.sec_nombre}" required="true"
+						requiredMessage="Campo tipo requerido"></b:inputText>
+					<h:outputLabel value="Dirección*" />
+					<b:inputText value="#{sectorBean.sec_direccion}" required="true"
+						requiredMessage="Campo dirección requerido" />
+					<h:outputLabel value="Ubicación*" />
+					<p:gmap id="geoGmap" widgetVar="geoMap"
+						center="#{sectorBean.centerGeoMap}" zoom="6" type="hybrid"
+						model="#{sectorBean.geoModel}" style="width:900px;height:400px">
+						<p:ajax event="pointSelect" listener="#{sectorBean.onMarca2}"
+							update="growl" />
+							<p:ajax event="overlaySelect" listener="#{sectorBean.onMarca}"
+							update="growl" />
+					</p:gmap>
+					<h:outputLabel styleClass="mar" value="Institución*"/>
+        			<b:selectOneMenu  styleClass="mar" value="#{sectorBean.institucion}">
+        			<f:selectItem itemValue="-1" itemLabel="--Seleccione--"/>
+        			<f:selectItems value="#{sectorBean.listInstitucion}" >
+        			</f:selectItems>
+        			</b:selectOneMenu>
+        			<h:outputLabel value="Estado*" rendered="#{sectorBean.edicion}"/>
+        			<b:selectOneMenu value="#{sectorBean.sec_estado}" rendered="#{sectorBean.edicion}">
+        			<f:selectItems value="#{sectorBean.listEstados}"/>
+        			</b:selectOneMenu>
+				</b:panelGrid>
+				<br />
+				<b:commandButton value="Guardar" action="#{sectorBean.crearSector}"
+					update="frmnb" look="info"></b:commandButton>&nbsp;&nbsp;&nbsp;
+					<h:commandButton type="button" value="Cancelar"
+					action="#{sectorBean.cancelar}" styleClass="btn btn-info">
+					<f:ajax />
+				</h:commandButton>
+			</b:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

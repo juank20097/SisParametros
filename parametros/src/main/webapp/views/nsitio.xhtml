@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui">
+
+
+<ui:composition template="template.xhtml">
+	<ui:define name="titulo">
+            Sitios
+        </ui:define>
+	<ui:define name="contenido">
+		<br />
+		<h:form id="frmnb">
+			<p:growl id="growl" showDetail="true" />
+			<p:messages closable="true"></p:messages>
+			<b:panel title="Registro de Sitios" look="primary">
+				<b:panelGrid colSpans="2,10">
+					<h:outputLabel value="Nombre*" />
+					<b:inputText value="#{sitiosBean.sit_nombre}" required="true"
+						requiredMessage="Campo nombre requerido"></b:inputText>
+					<h:outputLabel value="Costo Arriendo*" />
+					<b:inputText value="#{sitiosBean.sit_costo_arriendo}" required="true"
+						requiredMessage="Campo costo requerido">
+						</b:inputText>
+					<h:outputLabel value="Capacidad*" />
+					<b:inputText value="#{sitiosBean.sit_capacidad}" required="true"
+						requiredMessage="Campo capacidad requerido">
+						</b:inputText>
+					<h:outputLabel value="Area*"/>
+        			<b:selectOneMenu required="true" value="#{sitiosBean.area}" requiredMessage="Campo Area requerido">
+        			<f:selectItem itemValue="-1" itemLabel="--Seleccione--"/>
+        			<f:selectItems value="#{sitiosBean.listAreas}" >
+        			</f:selectItems>
+        			</b:selectOneMenu>
+        			<h:outputLabel value="Tipo de Sitio*"/>
+        			<b:selectOneMenu required="true" value="#{sitiosBean.tipositio}" requiredMessage="Campo Tipo de Sitio requerido">
+        			<f:selectItem itemValue="-1" itemLabel="--Seleccione--"/>
+        			<f:selectItems value="#{sitiosBean.listTipoSitios}" >
+        			</f:selectItems>
+        			</b:selectOneMenu>
+        			<h:outputLabel value="Estado*" rendered="#{sitiosBean.edicion}"/>
+        			<b:selectOneMenu value="#{sitiosBean.sit_estado}" rendered="#{sitiosBean.edicion}">
+        			<f:selectItems value="#{sitiosBean.listEstados}"/>
+        			</b:selectOneMenu>
+				</b:panelGrid>
+				<br />
+				<b:commandButton value="Guardar" action="#{sitiosBean.crearSitio}"
+					update="frmnb" look="info"></b:commandButton>&nbsp;&nbsp;&nbsp;
+					<h:commandButton type="button" value="Cancelar"
+					action="#{sitiosBean.cancelar}" styleClass="btn btn-info">
+					<f:ajax />
+				</h:commandButton>
+			</b:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

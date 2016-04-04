@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui">
+
+
+<ui:composition template="template.xhtml">
+	<ui:define name="titulo">
+            Areas
+        </ui:define>
+	<ui:define name="contenido">
+		<br />
+		<h:form id="frmnb">
+			<p:growl id="growl" showDetail="true" />
+			<p:messages closable="true"></p:messages>
+			<b:panel title="Registro de Areas" look="primary">
+				<b:panelGrid colSpans="2,10">
+					<h:outputLabel value="Nombre*" />
+					<b:inputText value="#{areasBean.are_nombre}" required="true"
+						requiredMessage="Campo nombre requerido"></b:inputText>
+					<h:outputLabel value="Descripción*" />
+					<p:inputTextarea style="width:100%; margin-bottom:15px;" value="#{areasBean.are_descripcion}" required="true"
+						requiredMessage="Campo descripción requerido" />
+					<h:outputLabel value="Sector*"/>
+        			<b:selectOneMenu value="#{areasBean.sector}">
+        			<f:selectItem itemValue="-1" itemLabel="--Seleccione--"/>
+        			<f:selectItems value="#{areasBean.listSectores}" >
+        			</f:selectItems>
+        			</b:selectOneMenu>
+        			<h:outputLabel value="Estado*" rendered="#{areasBean.edicion}"/>
+        			<b:selectOneMenu value="#{areasBean.are_estado}" rendered="#{areasBean.edicion}">
+        			<f:selectItems value="#{areasBean.listEstados}"/>
+        			</b:selectOneMenu>
+				</b:panelGrid>
+				<br />
+				<b:commandButton value="Guardar" action="#{areasBean.crearArea}"
+					update="frmnb" look="info"></b:commandButton>&nbsp;&nbsp;&nbsp;
+					<h:commandButton type="button" value="Cancelar"
+					action="#{areasBean.cancelar}" styleClass="btn btn-info">
+					<f:ajax />
+				</h:commandButton>
+			</b:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

@@ -197,5 +197,16 @@ public class InstitucionBean {
 					+ Funciones.valorEstadoInactivo));
 		return lista;
 	}
+	
+	public String pintar(String estado){
+		String res="";
+		if (estado.equals("A")){
+			res= "Green";
+		}
+		if (estado.equals("I")){
+			res= "Red";
+		}
+		return res;
+	}
 
 }

@@ -28,7 +28,7 @@ public class GenSitio implements Serializable {
 	@Column(name="sit_costo_arriendo")
 	private BigDecimal sitCostoArriendo;
 
-	@Column(name="sit_estado")
+	@Column(name="sit_estado",columnDefinition="bpchar" , length=1)
 	private String sitEstado;
 
 	@Column(name="sit_nombre")

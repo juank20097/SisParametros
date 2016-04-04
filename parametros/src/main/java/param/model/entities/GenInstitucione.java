@@ -24,7 +24,7 @@ public class GenInstitucione implements Serializable {
 	@Column(name="ins_descripcion")
 	private String insDescripcion;
 
-	@Column(name="ins_estado")
+	@Column(name="ins_estado",columnDefinition="bpchar" , length=1)
 	private String insEstado;
 
 	@Column(name="ins_nombre")

@@ -24,7 +24,7 @@ public class GenArea implements Serializable {
 	@Column(name="are_descripcion")
 	private String areDescripcion;
 
-	@Column(name="are_estado")
+	@Column(name="are_estado", columnDefinition="bpchar" , length=1)
 	private String areEstado;
 
 	@Column(name="are_nombre")

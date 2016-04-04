@@ -24,7 +24,7 @@ public class GenSectore implements Serializable {
 	@Column(name="sec_direccion")
 	private String secDireccion;
 
-	@Column(name="sec_estado")
+	@Column(name="sec_estado",columnDefinition="bpchar" , length=1)
 	private String secEstado;
 
 	@Column(name="sec_nombre")

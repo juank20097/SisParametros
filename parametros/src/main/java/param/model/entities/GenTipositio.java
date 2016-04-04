@@ -24,7 +24,7 @@ public class GenTipositio implements Serializable {
 	@Column(name="tsi_descripcion")
 	private String tsiDescripcion;
 
-	@Column(name="tsi_estado")
+	@Column(name="tsi_estado", columnDefinition="bpchar" , length=1)
 	private String tsiEstado;
 
 	@Column(name="tsi_nombre")

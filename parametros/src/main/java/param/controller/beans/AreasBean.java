@@ -8,11 +8,13 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 
+import param.controller.access.SesionBean;
 import param.model.entities.GenArea;
 import param.model.entities.GenSectore;
 import param.model.generic.Funciones;
 import param.model.generic.Mensaje;
 import param.model.manager.ManagerSitios;
+
 
 
 /**
@@ -26,6 +28,8 @@ public class AreasBean {
 	// Atributos de la Clase
 	@EJB
 	private ManagerSitios manager;
+	
+	private SesionBean sesion;
 
 	private Integer are_id;
 	private String are_nombre;
@@ -35,6 +39,8 @@ public class AreasBean {
 	private boolean edicion;
 
 	public AreasBean() {
+		sesion = new SesionBean();
+		sesion.validarSesion();
 		edicion = false;
 	}
 

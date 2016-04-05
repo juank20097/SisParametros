@@ -8,6 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 
+import param.controller.access.SesionBean;
 import param.model.entities.GenInstitucione;
 import param.model.generic.Funciones;
 import param.model.generic.Mensaje;
@@ -24,6 +25,8 @@ public class InstitucionBean {
 	// Atributos de la Clase
 	@EJB
 	private ManagerSitios manager;
+	
+	private SesionBean sesion;
 
 	private Integer ins_id;
 	private String ins_nombre;
@@ -32,6 +35,8 @@ public class InstitucionBean {
 	private boolean edicion;
 
 	public InstitucionBean() {
+		sesion = new SesionBean();
+		sesion.validarSesion();
 		edicion = false;
 	}
 

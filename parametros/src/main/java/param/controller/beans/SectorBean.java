@@ -18,6 +18,7 @@ import org.primefaces.model.map.LatLng;
 import org.primefaces.model.map.MapModel;
 import org.primefaces.model.map.Marker;
 
+import param.controller.access.SesionBean;
 import param.model.entities.GenInstitucione;
 import param.model.entities.GenSectore;
 import param.model.generic.Funciones;
@@ -36,6 +37,7 @@ public class SectorBean {
 	@EJB
 	private ManagerSitios manager;
 
+	private SesionBean sesion;
 
 	private Integer sec_id;
 	private String sec_nombre;
@@ -54,6 +56,8 @@ public class SectorBean {
 	
 
 	public SectorBean() {
+		sesion = new SesionBean();
+		sesion.validarSesion();
 		edicion = false;
 		geoModel = new DefaultMapModel();
 		

@@ -8,6 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 
+import param.controller.access.SesionBean;
 import param.model.entities.GenTipositio;
 import param.model.generic.Funciones;
 import param.model.generic.Mensaje;
@@ -24,6 +25,8 @@ public class TipoSitiosBean {
 	// Atributos de la Clase
 	@EJB
 	private ManagerSitios manager;
+	
+	private SesionBean sesion;
 
 	private Integer tsi_id;
 	private String tsi_nombre;
@@ -33,6 +36,8 @@ public class TipoSitiosBean {
 	private boolean edicion;
 
 	public TipoSitiosBean() {
+		sesion = new SesionBean();
+		sesion.validarSesion();
 		edicion = false;
 	}
 

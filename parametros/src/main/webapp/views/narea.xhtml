@@ -14,26 +14,29 @@
 	<ui:define name="contenido">
 		<br />
 		<h:form id="frmnb">
-			<p:growl id="growl" showDetail="true" />
-			<p:messages closable="true"></p:messages>
+			<p:messages closable="true">
+				<p:effect type="pulsate" event="load" delay="500" />
+			</p:messages>
 			<b:panel title="Registro de Areas" look="primary" collapsible="false">
 				<b:panelGrid colSpans="2,10">
 					<h:outputLabel value="Nombre*" />
 					<b:inputText value="#{areasBean.are_nombre}" required="true"
 						requiredMessage="Campo nombre requerido"></b:inputText>
 					<h:outputLabel value="Descripción*" />
-					<p:inputTextarea style="width:100%; margin-bottom:15px;" value="#{areasBean.are_descripcion}" required="true"
+					<p:inputTextarea style="width:100%; margin-bottom:15px;"
+						value="#{areasBean.are_descripcion}" required="true"
 						requiredMessage="Campo descripción requerido" />
-					<h:outputLabel value="Sector*"/>
-        			<b:selectOneMenu value="#{areasBean.sector}">
-        			<f:selectItem itemValue="-1" itemLabel="--Seleccione--"/>
-        			<f:selectItems value="#{areasBean.listSectores}" >
-        			</f:selectItems>
-        			</b:selectOneMenu>
-        			<h:outputLabel value="Estado*" rendered="#{areasBean.edicion}"/>
-        			<b:selectOneMenu value="#{areasBean.are_estado}" rendered="#{areasBean.edicion}">
-        			<f:selectItems value="#{areasBean.listEstados}"/>
-        			</b:selectOneMenu>
+					<h:outputLabel value="Sector*" />
+					<b:selectOneMenu value="#{areasBean.sector}">
+						<f:selectItem itemValue="-1" itemLabel="--Seleccione--" />
+						<f:selectItems value="#{areasBean.listSectores}">
+						</f:selectItems>
+					</b:selectOneMenu>
+					<h:outputLabel value="Estado*" rendered="#{areasBean.edicion}" />
+					<b:selectOneMenu value="#{areasBean.are_estado}"
+						rendered="#{areasBean.edicion}">
+						<f:selectItems value="#{areasBean.listEstados}" />
+					</b:selectOneMenu>
 				</b:panelGrid>
 				<br />
 				<b:commandButton value="Guardar" action="#{areasBean.crearArea}"

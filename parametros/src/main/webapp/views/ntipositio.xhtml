@@ -14,15 +14,18 @@
 	<ui:define name="contenido">
 		<br />
 		<h:form id="frmnb">
-			<p:growl id="growl" showDetail="true" />
-			<p:messages closable="true"></p:messages>
-			<b:panel title="Registro de Tipos Sitios" look="primary" collapsible="false">
+			<p:messages closable="true">
+				<p:effect type="pulsate" event="load" delay="500" />
+			</p:messages>
+			<b:panel title="Registro de Tipos Sitios" look="primary"
+				collapsible="false">
 				<b:panelGrid colSpans="2,10">
 					<h:outputLabel value="Nombre*" />
 					<b:inputText value="#{tipoSitiosBean.tsi_nombre}" required="true"
 						requiredMessage="Campo nombre requerido"></b:inputText>
 					<h:outputLabel value="Descripción*" />
-					<p:inputTextarea style="width:100%; margin-bottom:15px;" value="#{tipoSitiosBean.tsi_descripcion}" required="true"
+					<p:inputTextarea style="width:100%; margin-bottom:15px;"
+						value="#{tipoSitiosBean.tsi_descripcion}" required="true"
 						requiredMessage="Campo descripción requerido" />
 					<h:outputLabel value="Estado*" rendered="#{tipoSitiosBean.edicion}" />
 					<b:selectOneMenu value="#{tipoSitiosBean.tsi_estado}"
@@ -31,8 +34,9 @@
 					</b:selectOneMenu>
 				</b:panelGrid>
 				<br />
-				<b:commandButton value="Guardar" action="#{tipoSitiosBean.crearTipoSitio}"
-					update="frmnb" look="info"></b:commandButton>&nbsp;&nbsp;&nbsp;
+				<b:commandButton value="Guardar"
+					action="#{tipoSitiosBean.crearTipoSitio}" update="frmnb"
+					look="info"></b:commandButton>&nbsp;&nbsp;&nbsp;
 					<h:commandButton type="button" value="Cancelar"
 					action="#{tipoSitiosBean.cancelar}" styleClass="btn btn-info">
 					<f:ajax />

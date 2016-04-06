@@ -14,9 +14,11 @@
 	<ui:define name="contenido">
 		<br />
 		<h:form id="frmnb">
-			<p:growl id="growl" showDetail="true" />
-			<p:messages closable="true"></p:messages>
-			<b:panel title="Registro de Sectores" look="primary" collapsible="false">
+			<p:messages closable="true">
+				<p:effect type="pulsate" event="load" delay="500" />
+			</p:messages>
+			<b:panel title="Registro de Sectores" look="primary"
+				collapsible="false">
 				<b:panelGrid colSpans="2,10">
 					<h:outputLabel value="Nombre*" />
 					<b:inputText value="#{sectorBean.sec_nombre}" required="true"
@@ -30,19 +32,20 @@
 						model="#{sectorBean.geoModel}" style="width:900px;height:400px">
 						<p:ajax event="pointSelect" listener="#{sectorBean.onMarca2}"
 							update="growl" />
-							<p:ajax event="overlaySelect" listener="#{sectorBean.onMarca}"
+						<p:ajax event="overlaySelect" listener="#{sectorBean.onMarca}"
 							update="growl" />
 					</p:gmap>
-					<h:outputLabel styleClass="mar" value="Institución*"/>
-        			<b:selectOneMenu  styleClass="mar" value="#{sectorBean.institucion}">
-        			<f:selectItem itemValue="-1" itemLabel="--Seleccione--"/>
-        			<f:selectItems value="#{sectorBean.listInstitucion}" >
-        			</f:selectItems>
-        			</b:selectOneMenu>
-        			<h:outputLabel value="Estado*" rendered="#{sectorBean.edicion}"/>
-        			<b:selectOneMenu value="#{sectorBean.sec_estado}" rendered="#{sectorBean.edicion}">
-        			<f:selectItems value="#{sectorBean.listEstados}"/>
-        			</b:selectOneMenu>
+					<h:outputLabel styleClass="mar" value="Institución*" />
+					<b:selectOneMenu styleClass="mar" value="#{sectorBean.institucion}">
+						<f:selectItem itemValue="-1" itemLabel="--Seleccione--" />
+						<f:selectItems value="#{sectorBean.listInstitucion}">
+						</f:selectItems>
+					</b:selectOneMenu>
+					<h:outputLabel value="Estado*" rendered="#{sectorBean.edicion}" />
+					<b:selectOneMenu value="#{sectorBean.sec_estado}"
+						rendered="#{sectorBean.edicion}">
+						<f:selectItems value="#{sectorBean.listEstados}" />
+					</b:selectOneMenu>
 				</b:panelGrid>
 				<br />
 				<b:commandButton value="Guardar" action="#{sectorBean.crearSector}"

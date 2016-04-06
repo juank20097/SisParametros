@@ -24,7 +24,9 @@
 			</h:form>
 			<br/>
         	<h:form id="frmbicis">
-				<p:messages closable="true"></p:messages>
+				<p:messages closable="true">
+				 <p:effect type="pulsate" event="load" delay="500" />
+				</p:messages>
 				<b:panel title="Listado" look="primary" collapsible="false">
 					<p:dataTable id="tbb" value="#{sitiosBean.listSitios}" reflow="true" var="sit" rows="8" emptyMessage="Sin Datos"
 					scrollable="true" scrollRows="20" liveScroll="true" paginator="true" 
@@ -57,6 +59,10 @@
 						</p:column>
     				</p:dataTable>
 				</b:panel>
+				
+				<p:blockUI block="tbb" trigger="tbb">
+       			 CARGANDO...<br />
+			</p:blockUI>
 			</h:form>
         </ui:define>
 	</ui:composition>

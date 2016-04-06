@@ -13,7 +13,9 @@
 		<ui:define name="contenido">
         	<br/>
         	<h:form id="frmnb">
-        		<p:messages closable="true"></p:messages>
+        		<p:messages closable="true">
+        		 <p:effect type="pulsate" event="load" delay="500" />
+        		</p:messages>
         		<b:panel title="Registro de Institución" look="primary" collapsible="false">
         			<b:panelGrid colSpans="2,10">
         			<h:outputLabel value="Nombre*" />

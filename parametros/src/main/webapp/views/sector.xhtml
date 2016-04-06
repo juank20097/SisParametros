@@ -1,67 +1,86 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:b="http://bootsfaces.net/ui">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui">
 
-	<ui:composition template="template.xhtml">
-		<ui:define name="titulo">
+<ui:composition template="template.xhtml">
+	<ui:define name="titulo">
             Sectores
         </ui:define>
-		<ui:define name="contenido">
-			<h:form>
-				<center><h1>SECTORES</h1></center>
-				<b:row>
-					<b:column span="1">
-						<b:commandButton value="Nuevo" iconAwesome="file-o" action="#{sectorBean.nuevoSector}" />
-					</b:column>
-					<b:column span="1">
-						<b:commandButton value="Volver" iconAwesome="angle-left" action="index?faces-redirect=true"/> 
-					</b:column>
-				</b:row>
-			</h:form>
-			<br/>
-        	<h:form id="frmbicis">
-				<p:messages closable="true"></p:messages>
-				<b:panel title="Listado" look="primary" collapsible="false">
-					<p:dataTable id="tbb" value="#{sectorBean.listSector}" reflow="true" var="sec" rows="8" emptyMessage="Sin Datos"
-					scrollable="true" scrollRows="20" liveScroll="true" paginator="true" 
-    paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
-    					<p:column filterBy="#{sec.secNombre}" filterMatchMode="contains" headerText="NOMBRE" width="150">
-							<h:outputText value="#{sec.secNombre}"></h:outputText>
-						</p:column>
-						<p:column headerText="DIRECCIÓN" width="250">
-							<h:outputText value="#{sec.secDireccion}" />
-						</p:column>
-						<p:column headerText="UBICACIÓN" width="130">
-						 <p:commandButton actionListener="#{sectorBean.Mapa(sec)}" icon="ui-icon-search" title="Ver Mapa" update=":frm">
-            			</p:commandButton>
-						</p:column>
-						<p:column headerText="INSTITUCIÓN" filterBy="#{sec.genInstitucione.insNombre}" width="150">
-							<h:outputText value="#{sec.genInstitucione.insNombre}" />
-						</p:column>
-						<p:column filterBy="#{sec.secEstado}" filterMatchMode="contains" headerText="ESTADO" width="100">
-							<h:outputText value="#{sec.secEstado}" style="color:#{institucionBean.pintar(sec.secEstado)}"></h:outputText>
-						</p:column>
-						<p:column headerText="OPCIONES" width="100">
-							<p:commandButton id="btnE" icon="ui-icon-pencil" action="#{sectorBean.cargarSector(sec)}">
-								<p:tooltip for="btnE" value="Editar sector" trackMouse="true" />
-							</p:commandButton>
+	<ui:define name="contenido">
+		<h:form>
+			<center>
+				<h1>SECTORES</h1>
+			</center>
+			<b:row>
+				<b:column span="1">
+					<b:commandButton value="Nuevo" iconAwesome="file-o"
+						action="#{sectorBean.nuevoSector}" />
+				</b:column>
+				<b:column span="1">
+					<b:commandButton value="Volver" iconAwesome="angle-left"
+						action="index?faces-redirect=true" />
+				</b:column>
+			</b:row>
+		</h:form>
+		<br />
+		<h:form id="frmbicis">
+			<p:messages closable="true">
+				<p:effect type="pulsate" event="load" delay="500" />
+			</p:messages>
+			<b:panel title="Listado" look="primary" collapsible="false">
+				<p:dataTable id="tbb" value="#{sectorBean.listSector}" reflow="true"
+					var="sec" rows="8" emptyMessage="Sin Datos" scrollable="true"
+					scrollRows="20" liveScroll="true" paginator="true"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+					<p:column filterBy="#{sec.secNombre}" filterMatchMode="contains"
+						headerText="NOMBRE" width="150">
+						<h:outputText value="#{sec.secNombre}"></h:outputText>
+					</p:column>
+					<p:column headerText="DIRECCIÓN" width="250">
+						<h:outputText value="#{sec.secDireccion}" />
+					</p:column>
+					<p:column headerText="UBICACIÓN" width="130">
+						<p:commandButton actionListener="#{sectorBean.Mapa(sec)}"
+							icon="ui-icon-search" title="Ver Mapa" update=":frm">
+						</p:commandButton>
+					</p:column>
+					<p:column headerText="INSTITUCIÓN"
+						filterBy="#{sec.genInstitucione.insNombre}" width="150">
+						<h:outputText value="#{sec.genInstitucione.insNombre}" />
+					</p:column>
+					<p:column filterBy="#{sec.secEstado}" filterMatchMode="contains"
+						headerText="ESTADO" width="100">
+						<h:outputText value="#{sec.secEstado}"
+							style="color:#{institucionBean.pintar(sec.secEstado)}"></h:outputText>
+					</p:column>
+					<p:column headerText="OPCIONES" width="100">
+						<p:commandButton id="btnE" icon="ui-icon-pencil"
+							action="#{sectorBean.cargarSector(sec)}">
+							<p:tooltip for="btnE" value="Editar sector" trackMouse="true" />
+						</p:commandButton>
 							&nbsp;&nbsp;&nbsp;
 						</p:column>
-    				</p:dataTable>
-				</b:panel>
+				</p:dataTable>
+			</b:panel>
+			
+			<p:blockUI block="tbb" trigger="tbb">
+       			 CARGANDO...<br />
+			</p:blockUI>
+		</h:form>
+		<p:dialog widgetVar="dlg" width="625" height="400" modal="true">
+			<h:form id="frm">
+				<p:outputPanel id="carDetail" style="text-align:center;">
+					<p:gmap id="gmap" model="#{sectorBean.geoModel}"
+						center="#{sectorBean.sele.secUbicacion}" zoom="15" type="HYBRID"
+						style="width:100%;height:400px" />
+				</p:outputPanel>
 			</h:form>
-			<p:dialog widgetVar="dlg" width="625" height="400" modal="true">
-				<h:form id="frm">
-					<p:outputPanel id="carDetail" style="text-align:center;">
-	 					<p:gmap id="gmap" model="#{sectorBean.geoModel}" center="#{sectorBean.sele.secUbicacion}" zoom="15" type="HYBRID" style="width:100%;height:400px" />
-					</p:outputPanel>
-					</h:form>
-			</p:dialog>
-        </ui:define>
-	</ui:composition>
-	
+		</p:dialog>
+	</ui:define>
+</ui:composition>
+
 </html>

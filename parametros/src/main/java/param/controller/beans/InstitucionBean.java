@@ -213,5 +213,9 @@ public class InstitucionBean {
 		}
 		return res;
 	}
+	
+	public void cargar(){
+		sesion.validarSesion();
+	}
 
 }

@@ -1,56 +1,73 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:b="http://bootsfaces.net/ui">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui">
 
-	<ui:composition template="template.xhtml">
-		<ui:define name="titulo">
+<ui:composition template="template.xhtml">
+	<ui:define name="titulo">
             Areas
         </ui:define>
-		<ui:define name="contenido">
-			<h:form>
-				<center><h1>AREAS</h1></center>
-				<b:row>
-					<b:column span="1">
-						<b:commandButton value="Nuevo" iconAwesome="file-o" action="#{areasBean.nuevaArea}" />
-					</b:column>
-					<b:column span="1">
-						<b:commandButton value="Volver" iconAwesome="angle-left" action="index?faces-redirect=true"/> 
-					</b:column>
-				</b:row>
-			</h:form>
-			<br/>
-        	<h:form id="frmbicis">
-				<p:messages closable="true"></p:messages>
-				<b:panel title="Listado" look="primary" collapsible="false">
-					<p:dataTable id="tbb" value="#{areasBean.listAreas}" reflow="true" var="are" rows="8" emptyMessage="Sin Datos"
-					scrollable="true" scrollRows="20" liveScroll="true" paginator="true" 
-    paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
-    					<p:column filterBy="#{are.areNombre}" filterMatchMode="contains" headerText="NOMBRE" width="150">
-							<h:outputText value="#{are.areNombre}"></h:outputText>
-						</p:column>
-						<p:column headerText="DESCRIPCIÓN" width="250">
-							<h:outputText value="#{are.areDescripcion}" />
-						</p:column>
-						<p:column headerText="SECTOR" filterBy="#{are.genSectore.secNombre}" width="150">
-							<h:outputText value="#{are.genSectore.secNombre}" />
-						</p:column>
-						<p:column filterBy="#{are.areEstado}" filterMatchMode="contains" headerText="ESTADO" width="100">
-							<h:outputText value="#{are.areEstado}" style="color:#{institucionBean.pintar(are.areEstado)}"></h:outputText>
-						</p:column>
-						<p:column headerText="OPCIONES" width="100">
-							<p:commandButton id="btnE" icon="ui-icon-pencil" action="#{areasBean.cargarArea(are)}">
-								<p:tooltip for="btnE" value="Editar Area" trackMouse="true" />
-							</p:commandButton>
+	<ui:define name="contenido">
+		<h:form>
+			<center>
+				<h1>AREAS</h1>
+			</center>
+			<b:row>
+				<b:column span="1">
+					<b:commandButton value="Nuevo" iconAwesome="file-o"
+						action="#{areasBean.nuevaArea}" />
+				</b:column>
+				<b:column span="1">
+					<b:commandButton value="Volver" iconAwesome="angle-left"
+						action="index?faces-redirect=true" />
+				</b:column>
+			</b:row>
+		</h:form>
+		<br />
+		<h:form id="frmbicis">
+			<p:messages closable="true">
+				<p:effect type="pulsate" event="load" delay="500" />
+			</p:messages>
+			<b:panel title="Listado" look="primary" collapsible="false">
+				<p:dataTable id="tbb" value="#{areasBean.listAreas}" reflow="true"
+					var="are" rows="8" emptyMessage="Sin Datos" scrollable="true"
+					scrollRows="20" liveScroll="true" paginator="true"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+					<p:column filterBy="#{are.areNombre}" filterMatchMode="contains"
+						headerText="NOMBRE" width="150">
+						<h:outputText value="#{are.areNombre}"></h:outputText>
+					</p:column>
+					<p:column headerText="DESCRIPCIÓN" width="250">
+						<h:outputText value="#{are.areDescripcion}" />
+					</p:column>
+					<p:column headerText="SECTOR"
+						filterBy="#{are.genSectore.secNombre}" width="150">
+						<h:outputText value="#{are.genSectore.secNombre}" />
+					</p:column>
+					<p:column filterBy="#{are.areEstado}" filterMatchMode="contains"
+						headerText="ESTADO" width="100">
+						<h:outputText value="#{are.areEstado}"
+							style="color:#{institucionBean.pintar(are.areEstado)}"></h:outputText>
+					</p:column>
+					<p:column headerText="OPCIONES" width="100">
+						<p:commandButton id="btnE" icon="ui-icon-pencil"
+							action="#{areasBean.cargarArea(are)}">
+							<p:tooltip for="btnE" value="Editar Area" trackMouse="true" />
+						</p:commandButton>
 							&nbsp;&nbsp;&nbsp;
 						</p:column>
-    				</p:dataTable>
-				</b:panel>
-			</h:form>
-        </ui:define>
-	</ui:composition>
-	
+				</p:dataTable>
+			</b:panel>
+
+			<p:blockUI block="tbb" trigger="tbb">
+       			 CARGANDO...<br />
+			</p:blockUI>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+
 </html>

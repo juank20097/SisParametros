@@ -11,6 +11,9 @@
 	<ui:define name="titulo">
             Sectores
         </ui:define>
+        <ui:define name="google">
+        <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+        </ui:define>
 	<ui:define name="contenido">
 		<br />
 		<h:form id="frmnb">
@@ -31,9 +34,9 @@
 						center="#{sectorBean.centerGeoMap}" zoom="6" type="hybrid"
 						model="#{sectorBean.geoModel}" style="width:900px;height:400px">
 						<p:ajax event="pointSelect" listener="#{sectorBean.onMarca2}"
-							update="growl" />
+							 />
 						<p:ajax event="overlaySelect" listener="#{sectorBean.onMarca}"
-							update="growl" />
+							 />
 					</p:gmap>
 					<h:outputLabel styleClass="mar" value="Institución*" />
 					<b:selectOneMenu styleClass="mar" value="#{sectorBean.institucion}">
